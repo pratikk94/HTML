@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minimalist Photo Gallery</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #333;
+        }
+        header {
+            text-align: center;
+            padding: 50px 0;
+            background-color: #222;
+            color: white;
+        }
+        header h1 {
+            font-size: 3em;
+            margin: 0;
+        }
+        .gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 10px;
+            padding: 20px;
+        }
+        .gallery img {
+            width: 100%;
+            height: auto;
+            transition: transform 0.3s ease, opacity 0.3s ease;
+        }
+        .gallery figure {
+            margin: 0;
+            position: relative;
+        }
+        .gallery figcaption {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            color: white;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 5px 10px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .gallery figure:hover img {
+            transform: scale(1.05);
+        }
+        .gallery figure:hover figcaption {
+            opacity: 1;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #222;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>Minimalist Photo Gallery</h1>
+</header>
+
+<section class="gallery">
+    <figure>
+        <img src="hero.jpg" alt="Beautiful Landscape">
+        <figcaption>Beautiful Landscape</figcaption>
+    </figure>
+    <figure>
+        <img src="hero.jpg" alt="City Skyline">
+        <figcaption>City Skyline</figcaption>
+    </figure>
+    <figure>
+        <img src="hero.jpg" alt="Mountains">
+        <figcaption>Mountains</figcaption>
+    </figure>
+    <figure>
+        <img src="hero.jpg" alt="Sunset Beach">
+        <figcaption>Sunset Beach</figcaption>
+    </figure>
+</section>
+
+<footer>
+    <p>&copy; 2024 My Photography Portfolio</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Catch the Falling Stars</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #000;
+            color: white;
+            font-family: Arial, sans-serif;
+        }
+        #game-container {
+            position: relative;
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+        #basket {
+            position: absolute;
+            bottom: 20px;
+            width: 100px;
+            height: 50px;
+            background-color: #ff4500;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 10px;
+        }
+        .star {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: yellow;
+            border-radius: 50%;
+            animation: fall linear;
+        }
+        @keyframes fall {
+            from {
+                top: -20px;
+            }
+            to {
+                top: 100vh;
+            }
+        }
+        #score {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+<body>
+
+<div id="game-container">
+    <div id="score">Score: 0</div>
+    <div id="basket"></div>
+</div>
+
+<script>
+    const gameContainer = document.getElementById('game-container');
+    const basket = document.getElementById('basket');
+    const scoreDisplay = document.getElementById('score');
+    
+    let score = 0;
+    let basketPosition = 50; // Basket position as percentage (starts in the center)
+
+    // Move basket with left and right arrow keys
+    window.addEventListener('keydown', (event) => {
+        if (event.key === 'ArrowLeft') {
+            basketPosition = Math.max(0, basketPosition - 5); // Don't move left past 0%
+        } else if (event.key === 'ArrowRight') {
+            basketPosition = Math.min(90, basketPosition + 5); // Don't move right past 90%
+        }
+        basket.style.left = basketPosition + '%';
+    });
+
+    // Function to create a falling star
+    function createStar() {
+        const star = document.createElement('div');
+        star.classList.add('star');
+        star.style.left = Math.random() * 100 + 'vw'; // Random horizontal position
+        gameContainer.appendChild(star);
+
+        // Add animation duration
+        star.style.animationDuration = (3 + Math.random() * 2) + 's';
+
+        // Check if the star is caught by the basket
+        const fallInterval = setInterval(() => {
+            const starTop = star.getBoundingClientRect().top;
+            const starLeft = star.getBoundingClientRect().left;
+            const basketRect = basket.getBoundingClientRect();
+
+            // If the star reaches the bottom or is caught by the basket
+            if (starTop > window.innerHeight) {
+                gameContainer.removeChild(star);
+                clearInterval(fallInterval); // Remove the star
+            } else if (
+                starTop >= basketRect.top && 
+                starLeft >= basketRect.left && 
+                starLeft <= basketRect.right
+            ) {
+                score++; // Increase score if caught
+                scoreDisplay.textContent = 'Score: ' + score;
+                gameContainer.removeChild(star); // Remove star when caught
+                clearInterval(fallInterval); // Stop checking for this star
+            }
+        }, 50);
+    }
+
+    // Generate stars every 1 second
+    setInterval(createStar, 1000);
+</script>
+
+</body>
+</html>

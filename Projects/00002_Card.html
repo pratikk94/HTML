@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Digital Business Card</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background-color: white;
+            width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .card:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+        }
+        .card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .card h2 {
+            text-align: center;
+            margin: 0;
+            padding: 20px 0;
+            color: #333;
+        }
+        .card p {
+            text-align: center;
+            padding: 0 20px 20px;
+            color: #555;
+        }
+        .card a {
+            display: block;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            text-decoration: none;
+            border-radius: 0 0 10px 10px;
+            transition: background-color 0.3s;
+        }
+        .card a:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <img src="hero.jpg" alt="John Doe">
+    <h2>Pratik Khanapurkar</h2>
+    <p>Tiger hu mai</p>
+    <a href="mailto:johndoe@example.com">Contact Me</a>
+</div>
+
+</body>
+</html>
